@@ -1,0 +1,16 @@
+.User_container{
+    display: flex;
+    height: 1000px;
+    width: 1500px;
+    background-image: url("../Asset/background.jpg");
+    background-repeat: no-repeat;
+}
+
+.User_login{
+    display: flex;
+    justify-content: center;
+    padding: 3%;
+    margin: 8% 30% 35% 35%;
+    background-color: rgba(49, 47, 47, 0.555);
+
+}

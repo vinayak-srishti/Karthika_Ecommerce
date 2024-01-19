@@ -1,0 +1,13 @@
+.Reg_container{
+    display: flex;
+    height: 1000px;
+    width: 1500px;
+    background-image: url("../Asset/background.jpg");
+    background-repeat: no-repeat;
+}
+#title{
+    font-weight: bolder;
+}
+.address{
+    padding-left: 2%;
+}
