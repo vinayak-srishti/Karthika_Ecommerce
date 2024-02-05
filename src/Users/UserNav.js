@@ -34,7 +34,9 @@ function UserNav() {
             </Navbar.Text>
           
           <Navbar.Text className='me-5'>
+          <Link to={"shoppingcart"} className='link_deco'>
           <FaShoppingCart />
+          </Link>
           </Navbar.Text>
           <Navbar.Text>
           <i class="bi bi-bell-fill"></i>

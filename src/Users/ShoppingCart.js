@@ -1,46 +1,68 @@
 import React from 'react'
 import "./ShoppingCart.css"
 import UserNav from './UserNav';
-import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 function ShoppingCart() {
   return (
     <div className='cart_page'>
         <UserNav/>
-         <Table striped bordered hover className='mt-5 ms-5 me-5'>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Product Name</th>
-          <th>Quantity(Kg)</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Tomato</td>
-          <td>1</td>
-          <td>28</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Bitter Gourd</td>
-          <td>0.5</td>
-          <td>30</td>
-        </tr>
-        <tr>
-        <td>2</td>
-          <td>Brinjal</td>
-          <td>0.5</td>
-          <td>33</td>
-        </tr>
-        <tr>
-        <td>Total</td>
-           <td colSpan={3}>91</td>
-        </tr>
-      </tbody>
-    </Table>
+        <Modal.Dialog>
+        <Modal.Header>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Dialog>
+        <Modal.Header >
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Modal body text goes here.</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary">Remove Item</Button>
+          
+        </Modal.Footer>
+      </Modal.Dialog>
+      <Modal.Dialog>
+        <Modal.Header>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Modal body text goes here.</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary">Remove Item</Button>
+          
+        </Modal.Footer>
+      </Modal.Dialog>
+      <Modal.Dialog>
+        <Modal.Header >
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Modal body text goes here.</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary">Remove Item</Button>
+          
+        </Modal.Footer>
+      </Modal.Dialog>
+
+        <Modal.Footer>
+          <Button variant="secondary">Remove</Button>
+          <Button variant="primary">Save changes</Button>
+        </Modal.Footer>
+      </Modal.Dialog>
+
+
     </div>
   )
 }

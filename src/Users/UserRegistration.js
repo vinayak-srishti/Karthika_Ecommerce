@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./UserRegistration.css";
 import axiosinstance from "../axiosurl";
+import validator from "validator"
 
 function UserRegistration() {
   const [form, setForm] = useState({
@@ -20,21 +21,77 @@ function UserRegistration() {
   });
   const HandleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    // console.log(form);
+    console.log(form);
 
     // console.log({...form, [e.target.name]:e.target.value});
 
     // console.log(e.target.value);
     // console.log(e.target.name);
   };
-  const SubmitData = (e) => {
-    e.preventDefault();
-    // console.log(form);
+//   const SubmitData = (e) => {
+//     e.preventDefault();
+// if(!validator.isStrongPassword(form.password)){
+//   alert("Password is Incorrect !")
+// }
 
-    axiosinstance.post("/userregistration").then((res) => {
+// if(form.password!==form.confirmpwd){
+// alert("Password not matching !")
+// }
+
+// if(!validator.isByteLength(form.pincode, {min:6, max:6})){
+//   alert("Incorrect Pincode !")
+// }
+
+//     console.log(form);
+
+//     axiosinstance.post("/userregistration", {form: form}).then((res) => {
+//       console.log(res);
+//     })
+//     .catch((err)=>{
+//       console.log(err);
+//     })
+//   };
+
+
+const SubmitData = (e) => {
+  e.preventDefault();
+
+  if (!validator.isStrongPassword(form.password)) {
+    alert("Password must be at least 8 characters long and include uppercase, lowercase, and special characters.");
+    return;
+  }
+
+  if (form.password !== form.confirmpwd) {
+    alert("Password not matching!");
+    return;
+  }
+
+  if (!validator.isNumeric(form.pincode)) {
+    alert("Pincode must contain only numeric characters.");
+    return;
+  }
+
+  axiosinstance.post("/userregistration", { form: form })
+    .then((res) => {
       console.log(res);
+      // Reset the form after successful submission
+      setForm({
+        name: "",
+        email: "",
+        password: "",
+        confirmpwd: "",
+        address: "",
+        city: "",
+        state: "",
+        pincode: "",
+      });
+      alert("Registration successful!");
+    })
+    .catch((err) => {
+      console.log(err);
+      alert("Error occurred during registration. Please try again.");
     });
-  };
+};
 
   return (
     <div className="Reg_container">
@@ -50,7 +107,7 @@ function UserRegistration() {
               name="name"
               value={form.name}
               type="name"
-              placeholder="Enter Name"
+              placeholder="Enter Name" required
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridEmail">
@@ -60,7 +117,7 @@ function UserRegistration() {
               name="email"
               value={form.email}
               type="email"
-              placeholder="Enter email"
+              placeholder="Enter email" required
             />
           </Form.Group>
         </Row>
@@ -72,7 +129,7 @@ function UserRegistration() {
               name="password"
               value={form.password}
               type="password"
-              placeholder="Enter Password"
+              placeholder="Enter Password" required
             />
           </Form.Group>
           <Form.Group as={Col} controlId="formGridRepassword">
@@ -81,8 +138,8 @@ function UserRegistration() {
               onChange={HandleChange}
               name="confirmpwd"
               value={form.confirmpwd}
-              type="repassword"
-              placeholder="Re-type Password"
+              type="password"
+              placeholder="Re-type Password" required
             />
           </Form.Group>
         </Row>
@@ -92,7 +149,7 @@ function UserRegistration() {
             onChange={HandleChange}
             name="address"
             value={form.address}
-            placeholder="Apartment or floor"
+            placeholder="Apartment or floor" required
           />
         </Form.Group>
 
@@ -102,7 +159,7 @@ function UserRegistration() {
             <Form.Control
               onChange={HandleChange}
               name="city"
-              value={form.city}
+              value={form.city} required
             />
           </Form.Group>
 
@@ -112,10 +169,10 @@ function UserRegistration() {
               onChange={HandleChange}
               name="state"
               value={form.state}
-              defaultValue="Choose..."
+              defaultValue="Choose..." required
             >
               <option>Choose...</option>
-              <option>...</option>
+              <option>Kerala</option>
             </Form.Select>
           </Form.Group>
 
@@ -124,7 +181,7 @@ function UserRegistration() {
             <Form.Control
               onChange={HandleChange}
               name="pincode"
-              value={form.pincode}
+              value={form.pincode} required
             />
           </Form.Group>
         </Row>
