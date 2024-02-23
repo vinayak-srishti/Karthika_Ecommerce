@@ -1,5 +1,6 @@
 const express = require("express")
 const userschema = require("./UserSchema")
+const UserSchema = require("./UserSchema")
 
 const UserRegistration=(req, res)=>{
 // console.log(req.body);
@@ -33,4 +34,12 @@ res.json({
 })
 }
 
-module.exports = {UserRegistration}
+const UserLogin = (req, res)=>{
+const {email, password } = req.body
+const userlogin = UserSchema.findOne({email: email})
+res.send("Request pending")
+console.log(userlogin);
+// if(userlogin)
+}
+
+module.exports = {UserRegistration, UserLogin}
