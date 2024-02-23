@@ -7,6 +7,7 @@ import Card from 'react-bootstrap/Card';
 import UserNav from './UserNav';
 import "./ViewProducts.css"
 import Form from 'react-bootstrap/Form';
+import UserFooter from './UserFooter';
 
 
 function ViewProducts() {
@@ -67,8 +68,13 @@ function ViewProducts() {
       </Card.Body>
     </Card></Col>
       </Row>
-    </Container>
-    </div>
+      </Container>
+      <div >
+        <UserFooter/>
+      </div>
+        </div> 
+        
+       
   )
 }
 

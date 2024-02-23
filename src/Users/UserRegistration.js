@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -28,30 +27,6 @@ function UserRegistration() {
     // console.log(e.target.value);
     // console.log(e.target.name);
   };
-//   const SubmitData = (e) => {
-//     e.preventDefault();
-// if(!validator.isStrongPassword(form.password)){
-//   alert("Password is Incorrect !")
-// }
-
-// if(form.password!==form.confirmpwd){
-// alert("Password not matching !")
-// }
-
-// if(!validator.isByteLength(form.pincode, {min:6, max:6})){
-//   alert("Incorrect Pincode !")
-// }
-
-//     console.log(form);
-
-//     axiosinstance.post("/userregistration", {form: form}).then((res) => {
-//       console.log(res);
-//     })
-//     .catch((err)=>{
-//       console.log(err);
-//     })
-//   };
-
 
 const SubmitData = (e) => {
   e.preventDefault();
@@ -71,9 +46,9 @@ const SubmitData = (e) => {
     return;
   }
 
-  axiosinstance.post("/userregistration", { form: form })
+  axiosinstance.post("/userregistration", {...form })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       // Reset the form after successful submission
       setForm({
         name: "",
@@ -85,7 +60,7 @@ const SubmitData = (e) => {
         state: "",
         pincode: "",
       });
-      alert("Registration successful!");
+      alert(res.data.message);
     })
     .catch((err) => {
       console.log(err);

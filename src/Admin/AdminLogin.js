@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Container from 'react-bootstrap/Container';
 import "./AdminLogin.css";
+import { useNavigate } from "react-router-dom";
 
 
 function AdminLogin() {
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const navigate = useNavigate()
+
+  let Adminemail = "Admin1@gmail.com"
+  let Adminpassword = "Admin@123"
+const submitLogin = (e)=>{
+  e.preventDefault()
+  console.log(email, password);
+  if(Adminemail===email && Adminpassword === password){
+    localStorage.setItem("email", "Admin1@gmail.com")
+    navigate("/Adminhome")
+  }
+  else{
+    alert("Please enter correct email and password ! ")
+  }
+}
+
   return (
     <div className="Admin_container">
      
@@ -22,7 +42,10 @@ function AdminLogin() {
                   Email
                 </Form.Label>
                 <Col sm={9}>
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Control type="email" placeholder="Email" onChange={(e) => { 
+                  setEmail(e.target.value);
+                 
+                }}/>
                 </Col>
               </Form.Group>
 
@@ -35,7 +58,9 @@ function AdminLogin() {
                   Password
                 </Form.Label>
                 <Col sm={9}>
-                  <Form.Control type="password" placeholder="Password" />
+                  <Form.Control type="password" placeholder="Password" onChange={(e) => {
+                  setPassword(e.target.value);
+                }}/>
                 </Col>
               </Form.Group>
               <fieldset>
@@ -55,7 +80,7 @@ function AdminLogin() {
 
               <Form.Group as={Row} className="">
                 <Col sm={{ span: 10, offset: 2 }}>
-                  <Button type="submit">Sign in</Button>
+                  <Button type="submit" onClick={submitLogin}>Sign in</Button>
                 </Col>
               </Form.Group>
             </Form>

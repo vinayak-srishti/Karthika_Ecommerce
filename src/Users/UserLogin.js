@@ -4,25 +4,28 @@ import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./UserLogin.css";
+import axiosinstance from "../axiosurl";
 
 function UserLogin() {
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const HandleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const UserLogin = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    console.log(form);
+  
+    axiosinstance
+      .post("/Userlogin", { email, password })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="User_container">
       <div className="User_login">
-        <Form className="mt-5" onSubmit={UserLogin}>
+        <Form className="mt-5">
           <Form.Group as={Row} className="mb-4" controlId="formHorizontalEmail">
             <Form.Label column sm={1} className="me-5">
               Email
@@ -31,9 +34,11 @@ function UserLogin() {
               <Form.Control
                 type="email"
                 placeholder="Email"
-                onChange={HandleChange}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 name="email"
-                value={form.email}
+                value={email}
               />
             </Col>
           </Form.Group>
@@ -50,9 +55,11 @@ function UserLogin() {
               <Form.Control
                 type="password"
                 placeholder="Password"
-                onChange={HandleChange}
+                onChange={(e) => {
+                  setPassword(e.target.password);
+                }}
                 name="password"
-                value={form.password}
+                value={password}
               />
             </Col>
           </Form.Group>
@@ -73,7 +80,9 @@ function UserLogin() {
 
           <Form.Group as={Row} className="mb-3 ">
             <Col sm={{ span: 10, offset: 2 }}>
-              <Button type="submit">Sign in</Button>
+              <Button type="submit" onClick={handleLogin}>
+                Sign in
+              </Button>
             </Col>
           </Form.Group>
         </Form>

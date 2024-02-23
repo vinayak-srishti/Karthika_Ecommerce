@@ -17,6 +17,9 @@ import ManageOrders from './Admin/ManageOrders';
 import Notification from './Users/Notification';
 import ShoppingCart from './Users/ShoppingCart';
 import AddProduct from './Admin/AddProduct';
+import UserProfile from './Users/UserProfile';
+import UserFooter from './Users/UserFooter';
+
 
 function App() {
   return (
@@ -32,6 +35,7 @@ function App() {
         
 
         <Route path='/Usernav' element={<UserNav/>}/>
+        <Route path='/userfooter' element={<UserFooter/>}/>
         <Route path="/Userhome" element={<UserHome/>}/>
         <Route path ='/Userregistration' element={<UserRegistration/>}/>
         <Route path="/Userlogin" element={<UserLogin/>}/>
@@ -39,6 +43,7 @@ function App() {
         <Route path="/Notification" element={<Notification/>}/>
         <Route path='/contactus' element={<ContactUs/>}/>
         <Route path='/shoppingcart' element={<ShoppingCart/>}/>
+        <Route path='/userprofile' element={<UserProfile/>}/>
         
       </Routes>
       </BrowserRouter>
