@@ -16,7 +16,7 @@ function AddProduct() {
     Price: "",
     Pimage: null,
   });
-  const submitForm = (e) => {
+  const changeData = (e) => {
     e.preventDefault();
     setForm((prevdata) => {
       return {
@@ -26,15 +26,15 @@ function AddProduct() {
     });
   };
   console.log(form);
-  const submitImage = (e) => {
-    e.preventDefault();
+  const addImage = (e) => {
+    
     setForm({
       ...form,
       Pimage: e.target.files[0],
     });
   };
 
-  const saveProduct = (e) => {
+  const handleSubmit = (e) => {
     let formdata = new FormData();
     for (let i in form) {
       formdata.append(i, form[i]);
@@ -68,13 +68,13 @@ alert("Could not add product. Please try again")
     <div className="product_page">
       <AdminNav />
 
-      <Form onSubmit={saveProduct}>
+      <Form >
         <Form.Group as={Row} className="mb-3" controlId="formPlaintextName">
           <Form.Label column sm="2">
             Product Name
           </Form.Label>
           <Col sm="10">
-            <Form.Control plaintext name="Pname" onChange={submitForm} />
+            <Form.Control plaintext name="Pname" onChange={changeData} />
           </Col>
         </Form.Group>
 
@@ -90,7 +90,7 @@ alert("Could not add product. Please try again")
             <Form.Control
               placeholder="Poduct Id"
               name="Pid"
-              onChange={submitForm}
+              onChange={changeData}
             />
           </Col>
         </Form.Group>
@@ -106,7 +106,7 @@ alert("Could not add product. Please try again")
             <Form.Control
               placeholder="Product Description"
               name="Pdescription"
-              onChange={submitForm}
+              onChange={changeData}
             />
           </Col>
         </Form.Group>
@@ -118,14 +118,14 @@ alert("Could not add product. Please try again")
             <Form.Control
               placeholder="Price"
               name="Price"
-              onChange={submitForm}
+              onChange={changeData}
             />
           </Col>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Add Product Image</Form.Label>
-          <Form.Control type="file" onChange={submitImage} name="Pimage" />
-          <Button className="ms-5 mt-5 ">Add Product </Button>
+          <Form.Control type="file" onChange={addImage} name="Pimage" />
+          <Button className="ms-5 mt-5 " onClick={handleSubmit}>Add Product </Button>
         </Form.Group>
       </Form>
     </div>

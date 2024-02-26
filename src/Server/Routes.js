@@ -5,7 +5,7 @@ const product = require("./Admin/ProductController")
 
 router.post("/userregistration", user.UserRegistration)
 router.post("/Userlogin", user.UserLogin)
-router.post("/addproduct", product.AddProduct)
+router.post("/addproduct", product.AddProduct, product.uploadImage)
 
 
 module.exports= router
