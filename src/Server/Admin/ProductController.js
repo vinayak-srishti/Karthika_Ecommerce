@@ -57,4 +57,22 @@ const AddProduct = (req, res) => {
     })
 };
 
-module.exports = {AddProduct, uploadImage}
+const ViewProducts = (req, res)=>{
+ 
+ProductSchema.find()
+  .exec()
+  .then((data)=>{
+    res.json({
+      msg: "Product Details",
+      values: data
+    })
+  })
+  .catch((data)=>{
+    res.json({
+      msg:"Error finding Product"
+    })
+  })
+
+}
+
+module.exports = {AddProduct, uploadImage, ViewProducts}

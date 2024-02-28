@@ -41,14 +41,7 @@ function AddProduct() {
     }
     axiosinstance.post("/addproduct", formdata)
     .then((res) => {
-      setForm({
-        Pname: "",
-        Pid: "ID",
-        Pdescription: "",
-        Price: "",
-        Pimage: null,
-      });
-      alert(res.data.message);
+            alert(res.data.message);
     });
 try {
   
