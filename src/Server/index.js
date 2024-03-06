@@ -1,11 +1,15 @@
 const express = require("express")
 const db = require("./DbConnection")
 const bodyparser = require("body-parser")
+const multer = require("multer")
 
 const cors = require("cors")
 const app = express()
+
+
+app.use(bodyparser.urlencoded({extended:false}))
 app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({extended:true}))
+
 app.use(cors())
 
 const router = require("./Routes")

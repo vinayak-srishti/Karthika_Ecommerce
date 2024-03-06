@@ -14,32 +14,42 @@ function AddProduct() {
     Pid: "ID",
     Pdescription: "",
     Price: "",
-    Pimage: null,
+    Pimage: "",
   });
   const changeData = (e) => {
     e.preventDefault();
     setForm((prevdata) => {
       return {
         ...prevdata,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.name==='Pimage' ? e.target.files[0]:e.target.value
+        
       };
     });
   };
   console.log(form);
-  const addImage = (e) => {
+  // const addImage = (e) => {
     
-    setForm({
-      ...form,
-      Pimage: e.target.files[0],
-    });
-  };
+  //   setForm({
+  //     ...form,
+  //     Pimage: e.target.files[0],
+  //   });
+  // };
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     let formdata = new FormData();
     for (let i in form) {
       formdata.append(i, form[i]);
     }
-    axiosinstance.post("/addproduct", formdata)
+    console.log(formdata, "fd");
+    formdata.append("Pimage", form.Pimage)
+    console.log(formdata, "Appended");
+    axiosinstance.post("/addproduct", formdata, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+
     .then((res) => {
             alert(res.data.message);
     });
@@ -117,7 +127,7 @@ alert("Could not add product. Please try again")
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Label>Add Product Image</Form.Label>
-          <Form.Control type="file" onChange={addImage} name="Pimage" />
+          <Form.Control type="file" onChange={changeData} name="Pimage" />
           <Button className="ms-5 mt-5 " onClick={handleSubmit}>Add Product </Button>
         </Form.Group>
       </Form>

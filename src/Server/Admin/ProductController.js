@@ -1,45 +1,33 @@
 const ProductSchema = require("./ProductSchema");
 const multer = require('multer');
-let imageName = '';
 
-const imageStorage = multer.diskStorage({
-  destination: 'images', // Destination to store image
-  filename: (req, file, cb) => {
-      imageName = file.fieldname + '_' + Date.now() + file.originalname;
-      req.body.imageName = imageName;
-
-      cb(null, imageName); // file.fieldname is name of the field (image) ,path.extname get the uploaded file extension
+const storage = multer.diskStorage({
+  destination: function (req, res, cb) {
+    cb(null, "./upload");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
   },
 });
 
-const upload = multer({
-  storage: imageStorage,
-  limits: {
-      fileSize: 8000000, // 1000000 Bytes = 8 MB
-  },
-  fileFilter(req, file, cb) {
-      if (!file.originalname.match(/\.(png|jpg)$/)) {
-          // upload only png and jpg format
-          return cb(new Error('Incorrect file format !'));
-      }
-      cb(undefined, true);
-  },
-});
-
-const uploadImage = upload.single('image');
+const upload = multer({ storage: storage }).single("file");
 
 
-const AddProduct = (req, res) => {
-  console.log(req.body);
+
+const AddProduct = async(req, res) => {
+  console.log(req.files, "files");
+  
+  console.log(req.file, "file");
+  let Pimage = req.file
   let product = new ProductSchema({
 
     Pname: req.body.Pname,
     Pid: req.body.Pid,
     Pdescription: req.body.Pdescription,
     Price: req.body.Price,
-    Pimage: req.body.imageName,
+    Pimage: req.file,
   });
-
+await
   product.save()
   .then((response)=>{
     res.json({
@@ -75,4 +63,4 @@ ProductSchema.find()
 
 }
 
-module.exports = {AddProduct, uploadImage, ViewProducts}
+module.exports = {AddProduct, upload, ViewProducts}
