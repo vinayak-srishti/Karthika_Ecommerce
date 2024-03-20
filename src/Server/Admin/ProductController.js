@@ -10,14 +10,12 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage }).single("file");
+const upload = multer({ storage: storage }).single("Pimage");
 
 
 
 const AddProduct = async(req, res) => {
-  console.log(req.files, "files");
-  
-  console.log(req.file, "file");
+    
   let Pimage = req.file
   let product = new ProductSchema({
 

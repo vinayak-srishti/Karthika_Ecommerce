@@ -41,9 +41,7 @@ function AddProduct() {
     for (let i in form) {
       formdata.append(i, form[i]);
     }
-    console.log(formdata, "fd");
-    formdata.append("Pimage", form.Pimage)
-    console.log(formdata, "Appended");
+   
     axiosinstance.post("/addproduct", formdata, {
       headers: {
         "Content-Type": "multipart/form-data",

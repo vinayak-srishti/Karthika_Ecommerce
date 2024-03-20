@@ -37,7 +37,20 @@ res.json({
 const UserLogin = (req, res)=>{
 const {email, password } = req.body
 const userlogin = UserSchema.findOne({email: email})
-res.send("Request pending")
+if(userlogin.password==password){
+    res.json({
+        status:200,
+        message: "Login Successful",
+        data: response
+    })
+}
+else{
+    res.json({
+        status:500,
+        message: "Error"
+    })
+}
+
 console.log(userlogin);
 // if(userlogin)
 }

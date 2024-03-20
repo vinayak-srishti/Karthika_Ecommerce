@@ -19,6 +19,7 @@ import ShoppingCart from './Users/ShoppingCart';
 import AddProduct from './Admin/AddProduct';
 import UserProfile from './Users/UserProfile';
 import UserFooter from './Users/UserFooter';
+import Payment from './Users/Payment';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path='/contactus' element={<ContactUs/>}/>
         <Route path='/shoppingcart' element={<ShoppingCart/>}/>
         <Route path='/userprofile' element={<UserProfile/>}/>
+        <Route path='/Payment' element={<Payment/>}/>
         
       </Routes>
       </BrowserRouter>
