@@ -25,6 +25,10 @@ function ViewProducts() {
     console.log(productlist);
   }, []);
 
+const handleCart = (id)=>{
+console.log(id);
+}
+
   return (
     <div className="productpage">
       <UserNav />
@@ -52,10 +56,10 @@ function ViewProducts() {
           {productlist.map((item, index) => (
             <Col key={index}>
               {" "}
-              <Card style={{ width: "18rem" }} className="mt-5 ms-5">
+              <Card style={{ width: "18rem", height: "25rem" }} className="mt-5 ms-5">
                 <Card.Img
                   variant="top"
-                  src={`http://localhost:4000/${item.Pimage.originalname}`}
+                  src={`http://localhost:4000/upload/${item.Pimage.originalname}`}
                 />
                 <Card.Body>
                   <Card.Title>{item.Pname}</Card.Title>
@@ -66,7 +70,7 @@ function ViewProducts() {
                     </div>
                   </Card.Text>
 
-                  <Button variant="primary" >Add to Cart</Button>
+                  <Button variant="primary" onClick={()=>{handleCart(item._id)}}>Add to Cart</Button>
                 </Card.Body>
               </Card>
             </Col>

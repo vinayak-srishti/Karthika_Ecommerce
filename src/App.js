@@ -20,6 +20,7 @@ import AddProduct from './Admin/AddProduct';
 import UserProfile from './Users/UserProfile';
 import UserFooter from './Users/UserFooter';
 import Payment from './Users/Payment';
+import MainHome from './Users/MainHome';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
         <Route path='/Usernav' element={<UserNav/>}/>
         <Route path='/userfooter' element={<UserFooter/>}/>
+        <Route path='/' element={<MainHome/>}/>
         <Route path="/Userhome" element={<UserHome/>}/>
         <Route path ='/Userregistration' element={<UserRegistration/>}/>
         <Route path="/Userlogin" element={<UserLogin/>}/>
