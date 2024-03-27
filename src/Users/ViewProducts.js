@@ -9,6 +9,7 @@ import "./ViewProducts.css";
 import Form from "react-bootstrap/Form";
 import UserFooter from "./UserFooter";
 import axiosinstance from "../axiosurl";
+import { useNavigate } from "react-router-dom";
 
 function ViewProducts() {
   const [productlist, setProductlist] = useState([]);
@@ -27,8 +28,20 @@ function ViewProducts() {
 
 const handleCart = (id)=>{
 console.log(id);
+axiosinstance.post("/shoppingcart")
+.then((res)=>{
+  
+})
 }
-
+const Navigate = useNavigate()
+useEffect(()=>{
+  if(localStorage.getItem("User")!==null){
+    Navigate("/Viewproducts")
+  }
+  else{
+Navigate("/")
+  }
+})
   return (
     <div className="productpage">
       <UserNav />

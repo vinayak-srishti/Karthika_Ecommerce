@@ -17,6 +17,9 @@ function UserLogin() {
       .post("/Userlogin", { email, password })
       .then((res) => {
         console.log(res);
+        
+        localStorage.setItem("User", res.data.message);
+        // Navigate
       })
       .catch((err) => {
         console.log(err);

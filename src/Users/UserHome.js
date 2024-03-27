@@ -8,8 +8,21 @@ import image3 from "../Asset/carousel2.jpg";
 import "./UserHome.css";
 import { Link } from "react-router-dom";
 import UserFooter from "./UserFooter";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function UserHome() {
+
+  const Navigate = useNavigate()
+useEffect(()=>{
+  if(localStorage.getItem("User")!==null){
+    Navigate("/Userhome")
+  }
+  else{
+Navigate("/")
+  }
+})
+
   return (
     <div className="userhome">
       <UserNav />

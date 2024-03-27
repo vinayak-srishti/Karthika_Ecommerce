@@ -1,17 +1,18 @@
 import React from "react";
-import UserNav from "./UserNav";
+import MainHomeNav from "./MainHomeNav";
 import Carousel from "react-bootstrap/Carousel";
 
 import image1 from "../Asset/carousel.png";
 import image2 from "../Asset/carousel1.jpg";
 import image3 from "../Asset/carousel2.jpg";
 import "./UserHome.css";
-import { Link } from "react-router-dom";
+
 import UserFooter from "./UserFooter";
 
 function MainHome() {
   return (
-    <div className="userhome"><UserNav />
+    <div className="userhome">
+      <MainHomeNav/>
     <Carousel>
       <Carousel.Item>
         <img src={image1} alt="no image" id="img1" />

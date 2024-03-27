@@ -9,6 +9,11 @@ import { IoMdPerson } from "react-icons/io";
 import "./UserNav.css";
 
 function UserNav() {
+
+  const handleLogout=()=>{
+    localStorage.removeItem("User")
+  }
+
   return (
     <div>
       <Navbar className="bg-body-tertiary">
@@ -57,7 +62,7 @@ function UserNav() {
               <i class="bi bi-bell-fill"></i>
             </Navbar.Text>
             <Navbar.Text>
-              <CgLogOff />
+              <CgLogOff onClick={handleLogout}/>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>
