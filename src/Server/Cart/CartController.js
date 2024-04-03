@@ -1,24 +1,48 @@
-const CartSchema = require("./CartSchema")
+const CartSchema = require("./CartSchema");
 
+const AddToCart = (req, res) => {
+  let cart = new CartSchema({
+    Pname: req.body.Pname,
+    Pid: req.body.id,
+    Pdescription: req.body.Pdescription,
+    Price: req.body.Price,
+    Productid: req.body.Productid,
+    Userid : req.body.Userid
+  });
 
-const AddToCart = (req, res)=>{
-let cart = new CartSchema({
-    product : req.body.id
-})
-
-cart.save()
-.then((response)=>{
-    res.json({
+  cart
+    .save()
+    .then((response) => {
+      res.json({
         status: 200,
-        data: response
+        data: response,
+      });
     })
-})
-.catch((err)=>{
-    res.json({
+    .catch((err) => {
+      res.json({
         status: 500,
-        message: "Error Adding Product to Cart"
-    })
-})
-}
+        message: "Error Adding Product to Cart",
+      });
+    });
+};
 
-module.exports = {AddToCart}
+const findCartProduct=((req,res)=>{
+  console.log(req.params.Userid, "Userid");
+  const Userid = req.params.Userid
+//  CartSchema.findById(Userid)
+//  .exec()
+//  .then((data)=>{
+//     res.json({
+//         msg: "Added to Cart",
+//         value: data
+//     })
+//     .catch(err=>{
+//         res.json({
+//             msg: "Error Adding Product",
+//         error: err
+//         })
+//     })
+//  })
+})
+
+module.exports = { AddToCart, findCartProduct };

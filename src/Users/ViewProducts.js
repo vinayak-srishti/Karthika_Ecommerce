@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 
 function ViewProducts() {
   const [productlist, setProductlist] = useState([]);
+  const Navigate = useNavigate()
 
   useEffect(() => {
     axiosinstance
@@ -26,14 +27,16 @@ function ViewProducts() {
     console.log(productlist);
   }, []);
 
-const handleCart = (id)=>{
-console.log(id);
-axiosinstance.post("/shoppingcart")
+  const userid = localStorage.getItem("User")
+const handleCart = (Productid)=>{
+
+axiosinstance.post("/shoppingcart", Productid, )
 .then((res)=>{
-  
+  console.log(res);
+  // Navigate("/shoppingcart")
 })
 }
-const Navigate = useNavigate()
+
 useEffect(()=>{
   if(localStorage.getItem("User")!==null){
     Navigate("/Viewproducts")

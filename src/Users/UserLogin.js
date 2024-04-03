@@ -5,11 +5,13 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./UserLogin.css";
 import axiosinstance from "../axiosurl";
+import { useNavigate } from "react-router-dom";
 
 function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const Navigate = useNavigate()
   const handleLogin = (e) => {
     e.preventDefault();
   
@@ -19,7 +21,7 @@ function UserLogin() {
         console.log(res);
         
         localStorage.setItem("User", res.data.message);
-        // Navigate
+        Navigate("/Userhome")
       })
       .catch((err) => {
         console.log(err);

@@ -41,7 +41,7 @@ if(userlogin.password==password){
     res.json({
         status:200,
         message: "Login Successful",
-     
+     data: data
     })
     console.log(res.message);
 }

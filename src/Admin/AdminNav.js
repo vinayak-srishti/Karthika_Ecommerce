@@ -2,8 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import { CgLogOff } from "react-icons/cg";
 
 function AdminNav() {
+
+  const handleLogout=()=>{
+    localStorage.removeItem("email")
+  }
+
   return (
     <div>
          <Navbar className="bg-body-tertiary">
@@ -21,9 +27,11 @@ function AdminNav() {
           <Link to={'/Manageorders'} className='link_deco'> Manage Orders </Link> 
            
           </Navbar.Text>
-          <Navbar.Text className='me-5'>
-            Logout
-          </Navbar.Text>
+          <Navbar.Text>
+          <Link to={"/"} className="link_deco">
+              <CgLogOff onClick={handleLogout}/>
+              </Link>
+            </Navbar.Text>
         </Navbar.Collapse>
       </Container>
     </Navbar>
