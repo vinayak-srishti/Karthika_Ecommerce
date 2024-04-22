@@ -1,6 +1,7 @@
 const CartSchema = require("./CartSchema");
 
 const AddToCart = async (req, res) => {
+  console.log(req.params);
   let data = await CartSchema.find({
     Userid: req.body.Userid,
     productid: req.body.productid,
@@ -12,47 +13,48 @@ const AddToCart = async (req, res) => {
       Userid: req.body.Userid,
       productid: req.body.productid,
     });
-  
 
-  
-  cart
-    .save()
-    .then((response) => {
-      res.json({
-        status: 200,
-        data: response,
+    cart
+      .save()
+      .then((response) => {
+        console.log(response, "res");
+        res.json({
+          status: 200,
+          message: "Added to Cart",
+          data: response,
+        });
+      })
+      .catch((err) => {
+        res.json({
+          status: 500,
+          message: "Error Adding Product to Cart",
+        });
       });
-    })
-    .catch((err) => {
-      res.json({
-        status: 500,
-        message: "Error Adding Product to Cart",
-      });
+  } else {
+    res.json({
+      status: 400,
+      message: "Already in Cart",
     });
-} else{
-  res.json({
-    status: 400,
-    message : "Already in Cart"
-  })
-}}
+  }
+};
 
 const findCartProduct = (req, res) => {
-  console.log(req.params.Userid, "Userid");
-  const Userid = req.params.Userid;
-  //  CartSchema.findById(Userid)
-  //  .exec()
-  //  .then((data)=>{
-  //     res.json({
-  //         msg: "Added to Cart",
-  //         value: data
-  //     })
-  //     .catch(err=>{
-  //         res.json({
-  //             msg: "Error Adding Product",
-  //         error: err
-  //         })
-  //     })
-  //  })
+  CartSchema.find({ Userid: req.body.Userid })
+    .populate("productid")
+    .then((data) => {
+      if (data != null) {
+        res.json({
+          status: 200,
+          message: "Product Found Successfully",
+          data: data,
+        });
+      } else {
+        res.json({
+          status: 400,
+          message: "No Product found",
+        });
+      }
+    });
 };
 
 module.exports = { AddToCart, findCartProduct };

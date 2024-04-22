@@ -9,7 +9,7 @@ router.post("/Userlogin", user.UserLogin)
 router.post("/addproduct", product.upload, product.AddProduct)
 router.get("/viewproducts", product.ViewProducts )
 router.post("/shoppingcart", cart.AddToCart )
-router.get("/getcartlist/:Userid", cart.findCartProduct)
+router.get("/getcartlist", cart.findCartProduct)
 
 
 module.exports= router

@@ -1,5 +1,5 @@
 .User_container{
-    display: flex;
+    /* display: flex; */
     height: 1000px;
     width: 1500px;
     background-image: url("../Asset/background.jpg");

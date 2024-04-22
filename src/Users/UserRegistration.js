@@ -5,7 +5,8 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import "./UserRegistration.css";
 import axiosinstance from "../axiosurl";
-import validator from "validator"
+import validator from "validator";
+import MainHomeNav from "./MainHomeNav";
 
 function UserRegistration() {
   const [form, setForm] = useState({
@@ -69,7 +70,9 @@ const SubmitData = (e) => {
 };
 
   return (
+   
     <div className="Reg_container">
+       <MainHomeNav/>
       <Form onSubmit={SubmitData}>
         <Row className="mb-3 ms-5 mt-5">
           <Form.Label className="mb-3" id="title">
